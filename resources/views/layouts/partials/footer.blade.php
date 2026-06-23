@@ -74,7 +74,6 @@
     <div class="border-t border-gray-800/50">
         <div class="max-w-7xl mx-auto px-4 py-6 flex flex-col md:flex-row justify-between items-center text-xs text-gray-500 uppercase tracking-tighter">
             <p>© {{ date('Y') }} Eser Spor Kulübü. Tüm hakları saklıdır.</p>
-            <p>© {{ date('Y') }} Eser Spor Kulübü. Tüm hakları saklıdır.</p>
         </div>
     </div>
 </footer>
