@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -34,6 +35,7 @@ class UserController extends Controller
             'password.confirmed'    => 'Şifreler eşleşmiyor.',
         ]);
 
+        $data['password'] = Hash::make($data['password']);
         User::create($data);
 
         return redirect()->route('admin.kullanicilar.index')
@@ -58,7 +60,9 @@ class UserController extends Controller
             'password.confirmed' => 'Şifreler eşleşmiyor.',
         ]);
 
-        if (empty($data['password'])) {
+        if (!empty($data['password'])) {
+            $data['password'] = Hash::make($data['password']);
+        } else {
             unset($data['password']);
         }
 

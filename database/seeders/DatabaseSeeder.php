@@ -10,16 +10,12 @@ class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
-        $this->call([
-            AdminSeeder2::class,
-        ]);
-
         // Admin kullanıcısı
         User::updateOrCreate(
-            ['email' => config('admin.email')],
+            ['email' => 'admin@eserspor.com'],
             [
                 'name'     => 'Eser Spor Admin',
-                'password' => config('admin.password'),
+                'password' => env('ADMIN_PASSWORD', 'admin123456'),
             ]
         );
 
