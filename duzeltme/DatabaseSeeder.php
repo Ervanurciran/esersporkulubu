@@ -1,5 +1,7 @@
 <?php
 
+// BU DOSYAYI: database/seeders/DatabaseSeeder.php ile REPLACE ET
+
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
@@ -10,16 +12,18 @@ class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
-        // Admin kullanıcısı
+        // HATA 1 DÜZELTME: create() -> firstOrCreate() (duplicate entry önlemek için)
+        // HATA 2 DÜZELTME: Hash::make() YOK — User modelinde 'hashed' cast var, otomatik hash'liyor.
+        //                   Hash::make() yazarsan çift hash olur, login çalışmaz.
         User::updateOrCreate(
-            ['email' => config('admin.email')],
+            ['email' => 'admin@eserspor.com'],
             [
                 'name'     => 'Eser Spor Admin',
-                'password' => config('admin.password'),
+                'password' => env('ADMIN_PASSWORD', 'admin123456'),
             ]
         );
 
-        // Branşlar
+        // HATA 1 DÜZELTME: create() -> firstOrCreate()
         $branches = [
             ['name' => 'Futbol',   'slug' => 'futbol',   'icon' => '⚽', 'sort_order' => 1],
             ['name' => 'Voleybol', 'slug' => 'voleybol', 'icon' => '🏐', 'sort_order' => 2],
