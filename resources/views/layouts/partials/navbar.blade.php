@@ -316,31 +316,71 @@
 
                 <a href="{{ route('home') }}" class="mobile-nav-link">Ana Sayfa</a>
 
-                <div class="mobile-nav-group">
-                    <p class="mobile-nav-label">Hakkımızda</p>
-                    <a href="{{ route('about.history') }}" class="mobile-nav-sub">Tarihçe</a>
-                    <a href="{{ route('about.mission') }}" class="mobile-nav-sub">Misyon & Vizyon</a>
+                {{-- Hakkımızda --}}
+                <div class="mobile-nav-group" x-data="{ sub: false }">
+                    <button @click="sub = !sub" type="button" class="mobile-nav-label-btn">
+                        <span>Hakkımızda</span>
+                        <i class="fas fa-chevron-down text-xs transition duration-200" :class="sub ? 'rotate-180' : ''"></i>
+                    </button>
+                    <div x-show="sub"
+                         x-transition:enter="transition ease-out duration-200"
+                         x-transition:enter-start="opacity-0 -translate-y-1"
+                         x-transition:enter-end="opacity-100 translate-y-0"
+                         class="overflow-hidden">
+                        <a href="{{ route('about.history') }}" class="mobile-nav-sub">Tarihçe</a>
+                        <a href="{{ route('about.mission') }}" class="mobile-nav-sub">Misyon & Vizyon</a>
+                    </div>
                 </div>
 
-                <div class="mobile-nav-group">
-                    <p class="mobile-nav-label">Kurumsal</p>
-                    <a href="{{ route('corporate.president') }}" class="mobile-nav-sub">Başkan</a>
-                    <a href="{{ route('corporate.board') }}"     class="mobile-nav-sub">Yönetim Kurulu</a>
-                    <a href="{{ route('corporate.audit') }}"     class="mobile-nav-sub">Denetim Kurulu</a>
-                    <a href="{{ route('corporate.statute') }}"   class="mobile-nav-sub">Tüzük</a>
+                {{-- Kurumsal --}}
+                <div class="mobile-nav-group" x-data="{ sub: false }">
+                    <button @click="sub = !sub" type="button" class="mobile-nav-label-btn">
+                        <span>Kurumsal</span>
+                        <i class="fas fa-chevron-down text-xs transition duration-200" :class="sub ? 'rotate-180' : ''"></i>
+                    </button>
+                    <div x-show="sub"
+                         x-transition:enter="transition ease-out duration-200"
+                         x-transition:enter-start="opacity-0 -translate-y-1"
+                         x-transition:enter-end="opacity-100 translate-y-0"
+                         class="overflow-hidden">
+                        <a href="{{ route('corporate.president') }}" class="mobile-nav-sub">Başkan</a>
+                        <a href="{{ route('corporate.board') }}"     class="mobile-nav-sub">Yönetim Kurulu</a>
+                        <a href="{{ route('corporate.audit') }}"     class="mobile-nav-sub">Denetim Kurulu</a>
+                        <a href="{{ route('corporate.statute') }}"   class="mobile-nav-sub">Tüzük</a>
+                    </div>
                 </div>
 
-                <div class="mobile-nav-group">
-                    <p class="mobile-nav-label">Branşlar</p>
-                    <a href="{{ route('branch.show', 'futbol') }}"   class="mobile-nav-sub">⚽ Futbol</a>
-                    <a href="{{ route('branch.show', 'voleybol') }}" class="mobile-nav-sub">🏐 Voleybol</a>
-                    <a href="{{ route('branch.show', 'halter') }}"   class="mobile-nav-sub">🏋️ Halter</a>
+                {{-- Branşlar --}}
+                <div class="mobile-nav-group" x-data="{ sub: false }">
+                    <button @click="sub = !sub" type="button" class="mobile-nav-label-btn">
+                        <span>Branşlar</span>
+                        <i class="fas fa-chevron-down text-xs transition duration-200" :class="sub ? 'rotate-180' : ''"></i>
+                    </button>
+                    <div x-show="sub"
+                         x-transition:enter="transition ease-out duration-200"
+                         x-transition:enter-start="opacity-0 -translate-y-1"
+                         x-transition:enter-end="opacity-100 translate-y-0"
+                         class="overflow-hidden">
+                        <a href="{{ route('branch.show', 'futbol') }}"   class="mobile-nav-sub">⚽ Futbol</a>
+                        <a href="{{ route('branch.show', 'voleybol') }}" class="mobile-nav-sub">🏐 Voleybol</a>
+                        <a href="{{ route('branch.show', 'halter') }}"   class="mobile-nav-sub">🏋️ Halter</a>
+                    </div>
                 </div>
 
-                <div class="mobile-nav-group">
-                    <p class="mobile-nav-label">Haberler</p>
-                    <a href="{{ route('news.news') }}"   class="mobile-nav-sub">Haberler</a>
-                    <a href="{{ route('news.events') }}" class="mobile-nav-sub">Etkinlikler</a>
+                {{-- Haberler --}}
+                <div class="mobile-nav-group" x-data="{ sub: false }">
+                    <button @click="sub = !sub" type="button" class="mobile-nav-label-btn">
+                        <span>Haberler</span>
+                        <i class="fas fa-chevron-down text-xs transition duration-200" :class="sub ? 'rotate-180' : ''"></i>
+                    </button>
+                    <div x-show="sub"
+                         x-transition:enter="transition ease-out duration-200"
+                         x-transition:enter-start="opacity-0 -translate-y-1"
+                         x-transition:enter-end="opacity-100 translate-y-0"
+                         class="overflow-hidden">
+                        <a href="{{ route('news.news') }}"   class="mobile-nav-sub">Haberler</a>
+                        <a href="{{ route('news.events') }}" class="mobile-nav-sub">Etkinlikler</a>
+                    </div>
                 </div>
 
                 <a href="{{ route('announcement.index') }}" class="mobile-nav-link">Duyurular</a>
@@ -383,9 +423,12 @@
     @apply block px-4 py-3 text-gray-800 hover:text-green-600
            hover:bg-green-50 rounded-xl font-semibold text-sm transition duration-150;
 }
-.mobile-nav-group { @apply pt-2; }
-.mobile-nav-label {
-    @apply px-4 py-1 text-xs font-bold text-gray-400 uppercase tracking-widest;
+.mobile-nav-group { @apply pt-2 border-b border-gray-50 last:border-0; }
+.mobile-nav-label-btn {
+    @apply flex items-center justify-between w-full px-4 py-3
+           text-gray-800 font-semibold text-sm
+           hover:text-green-600 hover:bg-green-50
+           rounded-xl transition duration-150;
 }
 .mobile-nav-sub {
     @apply block px-6 py-2 text-sm text-gray-600
