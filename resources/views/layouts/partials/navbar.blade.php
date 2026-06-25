@@ -312,83 +312,129 @@
             x-transition:enter-start="opacity-0 -translate-y-2"
             x-transition:enter-end="opacity-100 translate-y-0"
             class="lg:hidden bg-white border-t border-gray-100 shadow-lg">
-            <div class="px-4 py-4 space-y-1 max-h-[75vh] overflow-y-auto">
+            <div class="px-3 py-4 flex flex-col gap-1 max-h-[75vh] overflow-y-auto">
 
-                <a href="{{ route('home') }}" class="mobile-nav-link">Ana Sayfa</a>
+                <a href="{{ route('home') }}"
+                   class="block px-4 py-3 text-gray-800 hover:text-green-600 hover:bg-green-50 rounded-xl font-semibold text-sm transition duration-150">
+                    Ana Sayfa
+                </a>
 
                 {{-- Hakkımızda --}}
-                <div class="mobile-nav-group" x-data="{ sub: false }">
-                    <button @click="sub = !sub" type="button" class="mobile-nav-label-btn">
+                <div x-data="{ sub: false }" class="border-b border-gray-100 pb-1">
+                    <button @click="sub = !sub" type="button"
+                            class="flex items-center justify-between w-full px-4 py-3 text-gray-800 font-semibold text-sm hover:text-green-600 hover:bg-green-50 rounded-xl transition duration-150">
                         <span>Hakkımızda</span>
-                        <i class="fas fa-chevron-down text-xs transition duration-200" :class="sub ? 'rotate-180' : ''"></i>
+                        <i class="fas fa-chevron-down text-xs transition duration-200" :class="sub ? 'rotate-180 text-green-600' : ''"></i>
                     </button>
                     <div x-show="sub"
                          x-transition:enter="transition ease-out duration-200"
                          x-transition:enter-start="opacity-0 -translate-y-1"
                          x-transition:enter-end="opacity-100 translate-y-0"
-                         class="overflow-hidden">
-                        <a href="{{ route('about.history') }}" class="mobile-nav-sub">Tarihçe</a>
-                        <a href="{{ route('about.mission') }}" class="mobile-nav-sub">Misyon & Vizyon</a>
+                         class="flex flex-col gap-1 pl-3 pt-1 pb-2">
+                        <a href="{{ route('about.history') }}"
+                           class="block px-4 py-2.5 text-sm text-gray-600 hover:text-green-600 hover:bg-green-50 rounded-lg transition duration-150">
+                            Tarihçe
+                        </a>
+                        <a href="{{ route('about.mission') }}"
+                           class="block px-4 py-2.5 text-sm text-gray-600 hover:text-green-600 hover:bg-green-50 rounded-lg transition duration-150">
+                            Misyon & Vizyon
+                        </a>
                     </div>
                 </div>
 
                 {{-- Kurumsal --}}
-                <div class="mobile-nav-group" x-data="{ sub: false }">
-                    <button @click="sub = !sub" type="button" class="mobile-nav-label-btn">
+                <div x-data="{ sub: false }" class="border-b border-gray-100 pb-1">
+                    <button @click="sub = !sub" type="button"
+                            class="flex items-center justify-between w-full px-4 py-3 text-gray-800 font-semibold text-sm hover:text-green-600 hover:bg-green-50 rounded-xl transition duration-150">
                         <span>Kurumsal</span>
-                        <i class="fas fa-chevron-down text-xs transition duration-200" :class="sub ? 'rotate-180' : ''"></i>
+                        <i class="fas fa-chevron-down text-xs transition duration-200" :class="sub ? 'rotate-180 text-green-600' : ''"></i>
                     </button>
                     <div x-show="sub"
                          x-transition:enter="transition ease-out duration-200"
                          x-transition:enter-start="opacity-0 -translate-y-1"
                          x-transition:enter-end="opacity-100 translate-y-0"
-                         class="overflow-hidden">
-                        <a href="{{ route('corporate.president') }}" class="mobile-nav-sub">Başkan</a>
-                        <a href="{{ route('corporate.board') }}"     class="mobile-nav-sub">Yönetim Kurulu</a>
-                        <a href="{{ route('corporate.audit') }}"     class="mobile-nav-sub">Denetim Kurulu</a>
-                        <a href="{{ route('corporate.statute') }}"   class="mobile-nav-sub">Tüzük</a>
+                         class="flex flex-col gap-1 pl-3 pt-1 pb-2">
+                        <a href="{{ route('corporate.president') }}"
+                           class="block px-4 py-2.5 text-sm text-gray-600 hover:text-green-600 hover:bg-green-50 rounded-lg transition duration-150">
+                            Başkan
+                        </a>
+                        <a href="{{ route('corporate.board') }}"
+                           class="block px-4 py-2.5 text-sm text-gray-600 hover:text-green-600 hover:bg-green-50 rounded-lg transition duration-150">
+                            Yönetim Kurulu
+                        </a>
+                        <a href="{{ route('corporate.audit') }}"
+                           class="block px-4 py-2.5 text-sm text-gray-600 hover:text-green-600 hover:bg-green-50 rounded-lg transition duration-150">
+                            Denetim Kurulu
+                        </a>
+                        <a href="{{ route('corporate.statute') }}"
+                           class="block px-4 py-2.5 text-sm text-gray-600 hover:text-green-600 hover:bg-green-50 rounded-lg transition duration-150">
+                            Tüzük
+                        </a>
                     </div>
                 </div>
 
                 {{-- Branşlar --}}
-                <div class="mobile-nav-group" x-data="{ sub: false }">
-                    <button @click="sub = !sub" type="button" class="mobile-nav-label-btn">
+                <div x-data="{ sub: false }" class="border-b border-gray-100 pb-1">
+                    <button @click="sub = !sub" type="button"
+                            class="flex items-center justify-between w-full px-4 py-3 text-gray-800 font-semibold text-sm hover:text-green-600 hover:bg-green-50 rounded-xl transition duration-150">
                         <span>Branşlar</span>
-                        <i class="fas fa-chevron-down text-xs transition duration-200" :class="sub ? 'rotate-180' : ''"></i>
+                        <i class="fas fa-chevron-down text-xs transition duration-200" :class="sub ? 'rotate-180 text-green-600' : ''"></i>
                     </button>
                     <div x-show="sub"
                          x-transition:enter="transition ease-out duration-200"
                          x-transition:enter-start="opacity-0 -translate-y-1"
                          x-transition:enter-end="opacity-100 translate-y-0"
-                         class="overflow-hidden">
-                        <a href="{{ route('branch.show', 'futbol') }}"   class="mobile-nav-sub">⚽ Futbol</a>
-                        <a href="{{ route('branch.show', 'voleybol') }}" class="mobile-nav-sub">🏐 Voleybol</a>
-                        <a href="{{ route('branch.show', 'halter') }}"   class="mobile-nav-sub">🏋️ Halter</a>
+                         class="flex flex-col gap-1 pl-3 pt-1 pb-2">
+                        <a href="{{ route('branch.show', 'futbol') }}"
+                           class="block px-4 py-2.5 text-sm text-gray-600 hover:text-green-600 hover:bg-green-50 rounded-lg transition duration-150">
+                            ⚽ Futbol
+                        </a>
+                        <a href="{{ route('branch.show', 'voleybol') }}"
+                           class="block px-4 py-2.5 text-sm text-gray-600 hover:text-green-600 hover:bg-green-50 rounded-lg transition duration-150">
+                            🏐 Voleybol
+                        </a>
+                        <a href="{{ route('branch.show', 'halter') }}"
+                           class="block px-4 py-2.5 text-sm text-gray-600 hover:text-green-600 hover:bg-green-50 rounded-lg transition duration-150">
+                            🏋️ Halter
+                        </a>
                     </div>
                 </div>
 
                 {{-- Haberler --}}
-                <div class="mobile-nav-group" x-data="{ sub: false }">
-                    <button @click="sub = !sub" type="button" class="mobile-nav-label-btn">
+                <div x-data="{ sub: false }" class="border-b border-gray-100 pb-1">
+                    <button @click="sub = !sub" type="button"
+                            class="flex items-center justify-between w-full px-4 py-3 text-gray-800 font-semibold text-sm hover:text-green-600 hover:bg-green-50 rounded-xl transition duration-150">
                         <span>Haberler</span>
-                        <i class="fas fa-chevron-down text-xs transition duration-200" :class="sub ? 'rotate-180' : ''"></i>
+                        <i class="fas fa-chevron-down text-xs transition duration-200" :class="sub ? 'rotate-180 text-green-600' : ''"></i>
                     </button>
                     <div x-show="sub"
                          x-transition:enter="transition ease-out duration-200"
                          x-transition:enter-start="opacity-0 -translate-y-1"
                          x-transition:enter-end="opacity-100 translate-y-0"
-                         class="overflow-hidden">
-                        <a href="{{ route('news.news') }}"   class="mobile-nav-sub">Haberler</a>
-                        <a href="{{ route('news.events') }}" class="mobile-nav-sub">Etkinlikler</a>
+                         class="flex flex-col gap-1 pl-3 pt-1 pb-2">
+                        <a href="{{ route('news.news') }}"
+                           class="block px-4 py-2.5 text-sm text-gray-600 hover:text-green-600 hover:bg-green-50 rounded-lg transition duration-150">
+                            Haberler
+                        </a>
+                        <a href="{{ route('news.events') }}"
+                           class="block px-4 py-2.5 text-sm text-gray-600 hover:text-green-600 hover:bg-green-50 rounded-lg transition duration-150">
+                            Etkinlikler
+                        </a>
                     </div>
                 </div>
 
-                <a href="{{ route('announcement.index') }}" class="mobile-nav-link">Duyurular</a>
-                <a href="{{ route('gallery.index') }}" class="mobile-nav-link">Galeri</a>
+                <a href="{{ route('announcement.index') }}"
+                   class="block px-4 py-3 text-gray-800 hover:text-green-600 hover:bg-green-50 rounded-xl font-semibold text-sm transition duration-150">
+                    Duyurular
+                </a>
+
+                <a href="{{ route('gallery.index') }}"
+                   class="block px-4 py-3 text-gray-800 hover:text-green-600 hover:bg-green-50 rounded-xl font-semibold text-sm transition duration-150">
+                    Galeri
+                </a>
 
                 <a href="{{ route('contact.form') }}"
-                   class="block w-full text-center bg-green-600 hover:bg-green-700
-                          text-white font-semibold py-3 rounded-xl transition duration-200 mt-2">
+                   class="block w-full text-center bg-green-600 hover:bg-green-700 text-white font-semibold py-3 rounded-xl transition duration-200 mt-2">
                     İletişim
                 </a>
             </div>
@@ -418,21 +464,5 @@
            rounded-lg whitespace-nowrap
            hover:bg-green-50 hover:text-green-600
            transition duration-150;
-}
-.mobile-nav-link {
-    @apply block px-4 py-3 text-gray-800 hover:text-green-600
-           hover:bg-green-50 rounded-xl font-semibold text-sm transition duration-150;
-}
-.mobile-nav-group { @apply pt-2 border-b border-gray-50 last:border-0; }
-.mobile-nav-label-btn {
-    @apply flex items-center justify-between w-full px-4 py-3
-           text-gray-800 font-semibold text-sm
-           hover:text-green-600 hover:bg-green-50
-           rounded-xl transition duration-150;
-}
-.mobile-nav-sub {
-    @apply block px-6 py-2 text-sm text-gray-600
-           hover:text-green-600 hover:bg-green-50
-           rounded-xl transition duration-150;
 }
 </style>
