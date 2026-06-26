@@ -10,7 +10,7 @@
 ══════════════════════════════════════ --}}
 <section class="relative">
     <div class="swiper hero-swiper"
-         style="height: clamp(520px, 92vh, 900px)">
+         style="height: clamp(520px, 92dvh, 900px)">
         <div class="swiper-wrapper">
 
             @forelse($sliders as $slide)
@@ -18,13 +18,13 @@
 
     {{-- FOTOĞRAF --}}
     @if($slide->media_type === 'image' || !$slide->isVideo())
-    <div class="absolute inset-0 bg-cover bg-center bg-no-repeat"
+    <div class="absolute inset-0 bg-cover bg-top lg:bg-center bg-no-repeat"
          style="background-image: url('{{ $slide->image_url }}')">
     </div>
 
     {{-- MP4 VİDEO --}}
     @elseif($slide->media_type === 'video' && $slide->video_path)
-    <video class="absolute inset-0 w-full h-full object-cover"
+    <video class="absolute inset-0 w-full h-full object-cover object-top lg:object-center"
            autoplay muted loop playsinline>
         <source src="{{ $slide->video_path_url }}" type="video/mp4">
     </video>
@@ -43,8 +43,8 @@
     @endif
 
     {{-- Watermark Logo --}}
-    <div class="absolute inset-0 flex items-center
-                justify-center pointer-events-none">
+    <div class="absolute inset-0 flex items-start lg:items-center
+                justify-center pointer-events-none pt-10 lg:pt-0">
         <img src="{{ asset('images/logo.png') }}"
              alt=""
              class="select-none"
