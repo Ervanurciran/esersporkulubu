@@ -9,91 +9,89 @@
      1. HERO SLIDER
 ══════════════════════════════════════ --}}
 <section class="relative">
-    <div class="swiper hero-swiper"
-         style="height: clamp(520px, 92dvh, 900px)">
+    <div class="swiper hero-swiper h-[50dvh] lg:h-[92dvh] lg:min-h-[520px] lg:max-h-[900px]">
         <div class="swiper-wrapper">
 
             @forelse($sliders as $slide)
-<div class="swiper-slide relative overflow-hidden">
+            <div class="swiper-slide relative overflow-hidden">
 
-    {{-- FOTOĞRAF --}}
-    @if($slide->media_type === 'image' || !$slide->isVideo())
-    <div class="absolute inset-0 bg-cover bg-top lg:bg-center bg-no-repeat"
-         style="background-image: url('{{ $slide->image_url }}')">
-    </div>
+                {{-- FOTOĞRAF --}}
+                @if($slide->media_type === 'image' || !$slide->isVideo())
+                <div class="absolute inset-0 bg-cover bg-top lg:bg-center bg-no-repeat"
+                     style="background-image: url('{{ $slide->image_url }}')">
+                </div>
 
-    {{-- MP4 VİDEO --}}
-    @elseif($slide->media_type === 'video' && $slide->video_path)
-    <video class="absolute inset-0 w-full h-full object-cover object-top lg:object-center"
-           autoplay muted loop playsinline>
-        <source src="{{ $slide->video_path_url }}" type="video/mp4">
-    </video>
+                {{-- MP4 VİDEO --}}
+                @img($slide->media_type === 'video' && $slide->video_path)
+                <video class="absolute inset-0 w-full h-full object-cover object-top lg:object-center"
+                       autoplay muted loop playsinline>
+                    <source src="{{ $slide->video_path_url }}" type="video/mp4">
+                </video>
 
-    {{-- YOUTUBE VİDEO --}}
-    @elseif($slide->media_type === 'video' && $slide->video_url)
-    <div class="absolute inset-0 overflow-hidden">
-        <iframe class="absolute w-[300%] h-[300%]"
-                style="top: -100%; left: -100%"
-                src="{{ $slide->youtube_embed }}"
-                frameborder="0"
-                allow="autoplay; muted; encrypted-media"
-                allowfullscreen>
-        </iframe>
-    </div>
-    @endif
-
-    {{-- Watermark Logo --}}
-    <div class="absolute inset-0 flex items-start lg:items-center
-                justify-center pointer-events-none pt-10 lg:pt-0">
-        <img src="{{ asset('images/logo.png') }}"
-             alt=""
-             class="select-none"
-             style="width: clamp(280px, 32vw, 480px);
-                    opacity: 0.06;
-                    filter: grayscale(20%)">
-    </div>
-
-    {{-- İçerik --}}
-    <div class="relative z-10 h-full flex items-center">
-        <div class="max-w-7xl mx-auto px-6 lg:px-12 w-full">
-            <div class="max-w-2xl">
-
-                @if($slide->subtitle)
-                <div class="flex items-center space-x-3 mb-6">
-                    <div class="w-8 h-px bg-white"></div>
-                    <span class="text-white text-xs font-bold
-                                 uppercase tracking-[0.3em] drop-shadow-lg">
-                        {{ $slide->subtitle }}
-                    </span>
+                {{-- YOUTUBE VİDEO --}}
+                @elseif($slide->media_type === 'video' && $slide->video_url)
+                <div class="absolute inset-0 overflow-hidden">
+                    <iframe class="absolute w-[300%] h-[300%]"
+                            style="top: -100%; left: -100%"
+                            src="{{ $slide->youtube_embed }}"
+                            frameborder="0"
+                            allow="autoplay; muted; encrypted-media"
+                            allowfullscreen>
+                    </iframe>
                 </div>
                 @endif
 
-                @if($slide->title)
-                <h1 class="font-black text-white leading-none mb-6 drop-shadow-2xl"
-                    style="font-size: clamp(2.5rem, 6vw, 5.5rem);
-                           letter-spacing: -2px;
-                           text-shadow: 0 4px 20px rgba(0,0,0,0.5)">
-                    {{ $slide->title }}
-                </h1>
-                @endif
+                {{-- Watermark Logo (Mobilde ve Masaüstünde Tam Ortalandı) --}}
+                <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+                    <img src="{{ asset('images/logo.png') }}"
+                         alt=""
+                         class="select-none"
+                         style="width: clamp(200px, 32vw, 480px);
+                                opacity: 0.06;
+                                filter: grayscale(20%)">
+                </div>
 
-                @if($slide->button_text && $slide->button_url)
-                <a href="{{ $slide->button_url }}"
-                   class="inline-flex items-center space-x-2
-                          bg-green-600 hover:bg-green-500
-                          text-white font-bold px-8 py-4
-                          rounded-full transition-all duration-300
-                          shadow-2xl">
-                    <span>{{ $slide->button_text }}</span>
-                    <i class="fas fa-arrow-right text-sm"></i>
-                </a>
-                @endif
+                {{-- İçerik --}}
+                <div class="relative z-10 h-full flex items-center">
+                    <div class="max-w-7xl mx-auto px-6 lg:px-12 w-full">
+                        <div class="max-w-2xl">
 
+                            @if($slide->subtitle)
+                            <div class="flex items-center space-x-3 mb-4 lg:mb-6">
+                                <div class="w-8 h-px bg-white"></div>
+                                <span class="text-white text-[10px] lg:text-xs font-bold
+                                             uppercase tracking-[0.3em] drop-shadow-lg">
+                                    {{ $slide->subtitle }}
+                                </span>
+                            </div>
+                            @endif
+
+                            @if($slide->title)
+                            <h1 class="font-black text-white leading-none mb-4 lg:mb-6 drop-shadow-2xl"
+                                style="font-size: clamp(1.8rem, 5vw, 5.5rem);
+                                       letter-spacing: -1px;
+                                       text-shadow: 0 4px 20px rgba(0,0,0,0.5)">
+                                {{ $slide->title }}
+                            </h1>
+                            @endif
+
+                            @if($slide->button_text && $slide->button_url)
+                            <a href="{{ $slide->button_url }}"
+                               class="inline-flex items-center space-x-2
+                                      bg-green-600 hover:bg-green-500
+                                      text-white font-bold px-6 py-3 lg:px-8 lg:py-4
+                                      text-sm lg:text-base rounded-full transition-all duration-300
+                                      shadow-2xl">
+                                <span>{{ $slide->button_text }}</span>
+                                <i class="fas fa-arrow-right text-xs lg:text-sm"></i>
+                            </a>
+                            @endif
+
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-</div>
-@empty
+            @empty
             {{-- ── SLIDER YOK — Varsayılan ── --}}
             <div class="swiper-slide relative overflow-hidden">
 
@@ -104,65 +102,57 @@
                             #450a0a 80%, #030712 100%)">
                 </div>
 
-                {{-- Watermark Logo --}}
-                <div class="absolute inset-0 flex items-center
-                            justify-center pointer-events-none">
+                {{-- Watermark Logo (Tam Ortalandı) --}}
+                <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
                     <img src="{{ asset('images/logo.png') }}"
                          alt=""
                          class="select-none"
-                         style="width: clamp(280px, 32vw, 480px);
+                         style="width: clamp(200px, 32vw, 480px);
                                 opacity: 0.12;
                                 filter: grayscale(20%)">
                 </div>
 
                 {{-- İçerik --}}
-                <div class="relative z-10 h-full flex items-center
-                            justify-center text-center">
+                <div class="relative z-10 h-full flex items-center justify-center text-center">
                     <div class="px-6">
-                        <div class="flex items-center justify-center
-                                    space-x-3 mb-6">
+                        <div class="flex items-center justify-center space-x-3 mb-4 lg:mb-6">
                             <div class="w-8 h-px bg-green-500"></div>
-                            <span class="text-green-400 text-xs font-bold
+                            <span class="text-green-400 text-[10px] lg:text-xs font-bold
                                          uppercase tracking-[0.3em]">
                                 Resmi Web Sitesi
                             </span>
                             <div class="w-8 h-px bg-green-500"></div>
                         </div>
 
-                        <h1 class="font-black text-white leading-none mb-3"
-                            style="font-size: clamp(3.5rem, 9vw, 7rem);
-                                   letter-spacing: -2px">
+                        <h1 class="font-black text-white leading-none mb-2"
+                            style="font-size: clamp(2.2rem, 8vw, 7rem);
+                                   letter-spacing: -1px">
                             ESER SPOR
                         </h1>
-                        <p class="font-bold text-green-400 tracking-[0.4em]
-                                  uppercase mb-8"
-                           style="font-size: clamp(1rem, 2vw, 1.4rem)">
+                        <p class="font-bold text-green-400 tracking-[0.4em] uppercase mb-4 lg:mb-8"
+                           style="font-size: clamp(0.8rem, 2vw, 1.4rem)">
                             Kulübü
                         </p>
-                        <p class="text-gray-400 text-lg mb-10
-                                  max-w-lg mx-auto leading-relaxed">
-                            Futbol, Voleybol ve Halter branşlarımızda
-                            yüzlerce sporcu yetiştiriyoruz.
+                        <p class="text-gray-400 text-sm lg:text-lg mb-6 lg:mb-10 max-w-lg mx-auto leading-relaxed hidden sm:block">
+                            Futbol, Voleybol ve Halter branşlarımızda yüzlerce sporcu yetiştiriyoruz.
                         </p>
 
-                        <div class="flex flex-wrap items-center
-                                    justify-center gap-4">
+                        <div class="flex flex-wrap items-center justify-center gap-3 lg:gap-4">
                             <a href="{{ route('branch.index') }}"
                                class="inline-flex items-center space-x-2
                                       bg-green-600 hover:bg-green-500
-                                      text-white font-bold px-10 py-4
-                                      rounded-full transition-all duration-300
+                                      text-white font-bold px-6 py-3 lg:px-10 lg:py-4
+                                      text-sm lg:text-base rounded-full transition-all duration-300
                                       shadow-xl shadow-green-600/40">
                                 <span>Branşlarımızı Keşfet</span>
-                                <i class="fas fa-arrow-right"></i>
+                                <i class="fas fa-arrow-right text-xs"></i>
                             </a>
                             <a href="{{ route('about.index') }}"
                                class="inline-flex items-center space-x-2
                                       bg-white/10 hover:bg-white/20
-                                      text-white font-semibold px-8 py-4
-                                      rounded-full border border-white/20
-                                      transition-all duration-300
-                                      backdrop-blur-sm">
+                                      text-white font-semibold px-5 py-3 lg:px-8 lg:py-4
+                                      text-sm lg:text-base rounded-full border border-white/20
+                                      transition-all duration-300 backdrop-blur-sm">
                                 <span>Hakkımızda</span>
                             </a>
                         </div>
@@ -174,25 +164,22 @@
         </div>
 
         {{-- Swiper Kontrolleri --}}
-        <div class="swiper-pagination !bottom-6"></div>
+        <div class="swiper-pagination !bottom-4 lg:!bottom-6"></div>
         <div class="swiper-button-prev
-                    !text-white !w-11 !h-11
+                    !text-white !w-9 !h-9 lg:!w-11 lg:!h-11
                     !bg-white/10 hover:!bg-green-600
                     rounded-full !transition-all !duration-300
-                    backdrop-blur-sm after:!text-sm !left-6">
+                    backdrop-blur-sm after:!text-xs lg:after:!text-sm !left-4 lg:!left-6">
         </div>
         <div class="swiper-button-next
-                    !text-white !w-11 !h-11
+                    !text-white !w-9 !h-9 lg:!w-11 lg:!h-11
                     !bg-white/10 hover:!bg-green-600
                     rounded-full !transition-all !duration-300
-                    backdrop-blur-sm after:!text-sm !right-6">
+                    backdrop-blur-sm after:!text-xs lg:after:!text-sm !right-4 lg:!right-6">
         </div>
     </div>
 </section>
 
-
-{{-- ══════════════════════════════════════
-     2. STATS BAR
 
 {{-- ══════════════════════════════════════
      2. SON MAÇ & YAKLAŞAN
@@ -372,12 +359,13 @@
                 </div>
             </a>
             @endforeach
-
+        </div>
+    </div>
 </section>
 
 
 {{-- ══════════════════════════════════════
-     4. HAKKIMIZDA — Renk geçişli arka plan
+     4. HAKKIMIZDA
 ══════════════════════════════════════ --}}
 <section class="py-20 relative overflow-hidden"
          style="background: linear-gradient(135deg, #f0fdf4 0%, #fff 40%, #fef2f2 100%)">
@@ -448,7 +436,7 @@
 
 
 {{-- ══════════════════════════════════════
-     5. SON HABERLER — Renk geçişli arka plan
+     5. SON HABERLER
 ══════════════════════════════════════ --}}
 <section class="py-20"
          style="background: linear-gradient(180deg, #ffffff 0%, #f9fafb 100%)">
@@ -529,15 +517,12 @@
 ══════════════════════════════════════ --}}
 <section class="relative py-20 overflow-hidden"
          style="background: linear-gradient(135deg, #15803d 0%, #166534 50%, #991b1b 100%)">
-    <div class="absolute inset-0 opacity-10">
-    </div>
     <div class="relative z-10 max-w-7xl mx-auto px-4 text-center">
         <h2 class="text-3xl md:text-4xl font-extrabold text-white mb-4">
             Eser Spor Ailesine Katıl!
         </h2>
         <p class="text-green-100 text-lg mb-8 max-w-xl mx-auto">
-            Sporcu olmak, forma giymek veya sponsor olmak istiyorsan
-            bizimle iletişime geç.
+            Sporcu olmak, forma giymek veya sponsor olmak istiyorsan bizimle iletişime geç.
         </p>
         <a href="{{ route('contact.form') }}"
            class="inline-flex items-center space-x-2
